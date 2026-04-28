@@ -141,32 +141,61 @@ export function Footer() {
 
   if (recipe.footer === 'editorial-footer') {
     return (
-      <footer className="border-t border-[#dbc6b6] bg-[linear-gradient(180deg,#fff9f0_0%,#fff1df_100%)] text-[#2f1d16]">
+      <footer className="zorvixy-brand-body border-t border-primary/20 bg-white/90 text-primary">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
+          <div className="grid gap-8 lg:grid-cols-4">
+            {/* Brand Section */}
+            <div className="lg:col-span-1">
+              <h3 className="text-2xl font-bold mb-4">{SITE_CONFIG.name}</h3>
+              <p className="text-sm text-muted mb-6">{SITE_CONFIG.description}</p>
+              <Link href="/pricing" className="btn-primary inline-flex items-center gap-2">
+                Get Started
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Navigation Links */}
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#dbc6b6] bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#72594a]">
-                <Sparkles className="h-3.5 w-3.5" />
-                Editorial desk
+              <h4 className="text-sm font-semibold mb-4 text-primary">Company</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/about" className="text-muted hover:text-primary">About Us</Link></li>
+                <li><Link href="/terms" className="text-muted hover:text-primary">Terms of Service</Link></li>
+                <li><Link href="/privacy" className="text-muted hover:text-primary">Privacy Policy</Link></li>
+                <li><Link href="/contact" className="text-muted hover:text-primary">Contact Us</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold mb-4 text-primary">Quick Links</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/" className="text-muted hover:text-primary">Home</Link></li>
+                <li><Link href="/press" className="text-muted hover:text-primary">Press Releases</Link></li>
+                <li><Link href="/latest-news" className="text-muted hover:text-primary">Latest News</Link></li>
+                <li><Link href="/pricing" className="text-muted hover:text-primary">Pricing</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold mb-4 text-primary">Contact</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/contact" className="text-muted hover:text-primary">Contact Us</Link></li>
+                <li><Link href="/support" className="text-muted hover:text-primary">Support</Link></li>
+                <li><Link href="/help" className="text-muted hover:text-primary">Help Center</Link></li>
+                <li><Link href="/faq" className="text-muted hover:text-primary">FAQ</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="mt-12 border-t border-primary/20 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="text-sm text-muted">
+                &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
               </div>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">{SITE_CONFIG.name}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-[#72594a]">{SITE_CONFIG.description}</p>
-            </div>
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Sections</h4>
-              <ul className="mt-4 space-y-3 text-sm">
-                {footerLinks.platform.map((item: any) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#2f1d16]">{item.name}</Link></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Company</h4>
-              <ul className="mt-4 space-y-3 text-sm">
-                {footerLinks.company.map((item) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#2f1d16]">{item.name}</Link></li>
-                ))}
-              </ul>
+              <div className="flex gap-6 text-sm">
+                <Link href="/terms" className="text-muted hover:text-primary">Terms of Service</Link>
+                <Link href="/privacy" className="text-muted hover:text-primary">Privacy Policy</Link>
+              </div>
             </div>
           </div>
         </div>

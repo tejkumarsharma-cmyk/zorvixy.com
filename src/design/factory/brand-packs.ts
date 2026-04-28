@@ -37,4 +37,13 @@ export const BRAND_PACKS: Record<BrandPack['key'], BrandPack> = {
     surfaceClassName: 'factory-surface-market',
     accentClassName: 'factory-accent-market',
   },
+  'zorvixy-brand': {
+    key: 'zorvixy-brand',
+    displayName: 'Zorvixy Brand',
+    bodyClassName: 'zorvixy-brand-body',
+    fontClassName: 'zorvixy-font',
+    paletteClassName: 'zorvixy-palette',
+    surfaceClassName: 'zorvixy-surface',
+    accentClassName: 'zorvixy-accent',
+  },
 }
