@@ -127,4 +127,20 @@ export const THEME_PACKS: Record<ThemePackDefinition['key'], ThemePackDefinition
     },
     notes: ['Warmer curation palette', 'Board-style modules', 'Human-curated feel'],
   },
+  'zorvixy-media': {
+    key: 'zorvixy-media',
+    label: 'Zorvixy Media',
+    productFamily: 'editorial',
+    brandPack: 'zorvixy-brand',
+    navbar: 'editorial-bar',
+    footer: 'editorial-footer',
+    homeLayout: 'article-home',
+    motionPack: 'editorial-soft',
+    defaultTaskTemplates: {
+      mediaDistribution: 'article-journal',
+      article: 'article-journal',
+      profile: 'profile-business',
+    },
+    notes: ['Media press release focus', 'Vibrant brand colors', 'Professional editorial layout'],
+  },
 }

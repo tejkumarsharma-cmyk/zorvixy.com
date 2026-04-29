@@ -2,40 +2,40 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Independent news desk',
+    tagline: 'Professional Media Distribution',
   },
   footer: {
-    tagline: 'Simple publishing for press-style updates',
+    tagline: 'Distribute Your News Worldwide',
   },
   hero: {
-    badge: 'Latest updates',
-    title: ['Clear publishing, simple reading, no extra noise.'],
+    badge: 'Media Distribution',
+    title: ['Share Your Story with the World.'],
     description:
-      'A minimal article-style publishing template built for regular updates, announcements, and media distribution posts.',
+      'Professional press release distribution platform that connects your news with thousands of media outlets globally.',
     primaryCta: {
-      label: 'Browse latest posts',
-      href: '/updates',
+      label: 'Submit Press Release',
+      href: '/create/media-distribution',
     },
     secondaryCta: {
-      label: 'Contact us',
-      href: '/contact',
+      label: 'View Pricing',
+      href: '/pricing',
     },
-    searchPlaceholder: 'Search posts',
-    focusLabel: 'Latest',
-    featureCardBadge: 'editor note',
-    featureCardTitle: 'Recent updates appear directly on the homepage.',
+    searchPlaceholder: 'Search press releases',
+    focusLabel: 'Featured',
+    featureCardBadge: 'media distribution',
+    featureCardTitle: 'Reach 15,000+ Media Outlets.',
     featureCardDescription:
-      'The homepage works as a clean front page so new posts stay visible without decorative sections getting in the way.',
+      'Our platform ensures your press releases reach the right journalists and publications with AI-powered targeting.',
   },
   home: {
     metadata: {
-      title: 'Latest updates and newsroom posts',
+      title: 'Press Releases & Media Distribution',
       description:
-        'Read the latest updates, announcements, and stories through a simple archive-first publishing experience.',
-      openGraphTitle: 'Latest updates and newsroom posts',
+        'Professional press release distribution platform. Share your news with thousands of media outlets worldwide.',
+      openGraphTitle: 'Zorvixy - Press Release Distribution',
       openGraphDescription:
-        'A simple publishing template for updates, announcements, and readable article pages.',
-      keywords: ['newsroom posts', 'latest updates', 'announcements', 'press articles'],
+        'Connect your stories with global media outlets through our intelligent press release distribution platform.',
+      keywords: ['press release distribution', 'media outlets', 'news distribution', 'public relations'],
     },
     introBadge: 'About',
     introTitle: 'A quiet publishing template made for regular updates.',

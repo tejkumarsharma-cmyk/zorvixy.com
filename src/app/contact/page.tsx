@@ -1,113 +1,297 @@
-import { Building2, FileText, Image as ImageIcon, Mail, MapPin, Phone, Sparkles, Bookmark } from 'lucide-react'
+'use client'
+
+import { useState } from 'react'
+import { Mail, Phone, MapPin, Clock, Building2, Send, HelpCircle, FileText, Users, ArrowRight } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
-import { SITE_CONFIG } from '@/lib/site-config'
-import { getFactoryState } from '@/design/factory/get-factory-state'
-import { getProductKind } from '@/design/factory/get-product-kind'
-import { CONTACT_PAGE_OVERRIDE_ENABLED, ContactPageOverride } from '@/overrides/contact-page'
-
-function getTone(kind: ReturnType<typeof getProductKind>) {
-  if (kind === 'directory') {
-    return {
-      shell: 'bg-[#f8fbff] text-slate-950',
-      panel: 'border border-slate-200 bg-white',
-      soft: 'border border-slate-200 bg-slate-50',
-      muted: 'text-slate-600',
-      action: 'bg-slate-950 text-white hover:bg-slate-800',
-    }
-  }
-  if (kind === 'editorial') {
-    return {
-      shell: 'bg-[#fbf6ee] text-[#241711]',
-      panel: 'border border-[#dcc8b7] bg-[#fffdfa]',
-      soft: 'border border-[#e6d6c8] bg-[#fff4e8]',
-      muted: 'text-[#6e5547]',
-      action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
-    }
-  }
-  if (kind === 'visual') {
-    return {
-      shell: 'bg-[#07101f] text-white',
-      panel: 'border border-white/10 bg-white/6',
-      soft: 'border border-white/10 bg-white/5',
-      muted: 'text-slate-300',
-      action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
-    }
-  }
-  return {
-    shell: 'bg-[#f7f1ea] text-[#261811]',
-    panel: 'border border-[#ddcdbd] bg-[#fffaf4]',
-    soft: 'border border-[#e8dbce] bg-[#f3e8db]',
-    muted: 'text-[#71574a]',
-    action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
-  }
-}
 
 export default function ContactPage() {
-  if (CONTACT_PAGE_OVERRIDE_ENABLED) {
-    return <ContactPageOverride />
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    organization: '',
+    subject: '',
+    message: ''
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
   }
 
-  const { recipe } = getFactoryState()
-  const productKind = getProductKind(recipe)
-  const tone = getTone(productKind)
-  const lanes =
-    productKind === 'directory'
-      ? [
-          { icon: Building2, title: 'Business onboarding', body: 'Add listings, verify operational details, and bring your business surface live quickly.' },
-          { icon: Phone, title: 'Partnership support', body: 'Talk through bulk publishing, local growth, and operational setup questions.' },
-          { icon: MapPin, title: 'Coverage requests', body: 'Need a new geography or category lane? We can shape the directory around it.' },
-        ]
-      : productKind === 'editorial'
-        ? [
-            { icon: FileText, title: 'Editorial submissions', body: 'Pitch essays, columns, and long-form ideas that fit the publication.' },
-            { icon: Mail, title: 'Newsletter partnerships', body: 'Coordinate sponsorships, collaborations, and issue-level campaigns.' },
-            { icon: Sparkles, title: 'Contributor support', body: 'Get help with voice, formatting, and publication workflow questions.' },
-          ]
-        : productKind === 'visual'
-          ? [
-              { icon: ImageIcon, title: 'Creator collaborations', body: 'Discuss gallery launches, creator features, and visual campaigns.' },
-              { icon: Sparkles, title: 'Licensing and use', body: 'Reach out about usage rights, commercial requests, and visual partnerships.' },
-              { icon: Mail, title: 'Media kits', body: 'Request creator decks, editorial support, or visual feature placement.' },
-            ]
-          : [
-              { icon: Bookmark, title: 'Collection submissions', body: 'Suggest resources, boards, and links that deserve a place in the library.' },
-              { icon: Mail, title: 'Resource partnerships', body: 'Coordinate curation projects, reference pages, and link programs.' },
-              { icon: Sparkles, title: 'Curator support', body: 'Need help organizing shelves, collections, or profile-connected boards?' },
-            ]
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle form submission here
+    console.log('Form submitted:', formData)
+    // Reset form
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      organization: '',
+      subject: '',
+      message: ''
+    })
+  }
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: 'Telephone Hours',
+      details: ['Monday - Friday: 9:00 AM - 6:00 PM EST', 'Saturday: 10:00 AM - 4:00 PM EST', 'Sunday: Closed']
+    },
+    {
+      icon: Phone,
+      title: 'Toll-Free Number',
+      details: ['1-800-ZORVIXY', '1-800-967-8499']
+    },
+    {
+      icon: MapPin,
+      title: 'US Address',
+      details: ['Zorvixy Media Distribution', '1234 Press Release Avenue', 'New York, NY 10001', 'United States']
+    },
+    {
+      icon: MapPin,
+      title: 'Canada Address',
+      details: ['Zorvixy Canada', '567 Media Way', 'Toronto, ON M5V 2T6', 'Canada']
+    }
+  ]
+
+  const faqItems = [
+    {
+      question: 'How quickly will I receive a response?',
+      answer: 'We typically respond to all inquiries within 24 business hours.'
+    },
+    {
+      question: 'Do you offer phone support?',
+      answer: 'Yes, phone support is available during business hours Monday through Saturday.'
+    },
+    {
+      question: 'Can I schedule a demo?',
+      answer: 'Absolutely! Use the contact form to request a personalized demo of our platform.'
+    }
+  ]
 
   return (
-    <div className={`min-h-screen ${tone.shell}`}>
+    <div className="zorvixy-brand-body zorvixy-font min-h-screen">
       <NavbarShell />
-      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Contact {SITE_CONFIG.name}</p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em]">A support page that matches the product, not a generic contact form.</h1>
-            <p className={`mt-5 max-w-2xl text-sm leading-8 ${tone.muted}`}>Tell us what you are trying to publish, fix, or launch. We will route it through the right lane instead of forcing every request into the same support bucket.</p>
-            <div className="mt-8 space-y-4">
-              {lanes.map((lane) => (
-                <div key={lane.title} className={`rounded-[1.6rem] p-5 ${tone.soft}`}>
-                  <lane.icon className="h-5 w-5" />
-                  <h2 className="mt-3 text-xl font-semibold">{lane.title}</h2>
-                  <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{lane.body}</p>
-                </div>
-              ))}
-            </div>
+      
+      {/* Hero Section */}
+      <section className="hero-section relative">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              Contact Us
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl lg:text-2xl text-white/90">
+              Get in touch with our team for press release distribution and media services
+            </p>
           </div>
+        </div>
+      </section>
 
-          <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
-            <h2 className="text-2xl font-semibold">Send a message</h2>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Your name" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="What do you need help with?" />
-              <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-transparent px-4 py-3 text-sm" placeholder="Share the full context so we can respond with the right next step." />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</button>
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
+          {/* Contact Form */}
+          <div className="press-card p-8">
+            <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    Name <span className="text-accent">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Your full name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    Email <span className="text-accent">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="organization" className="block text-sm font-medium mb-2">
+                    Organization Type
+                  </label>
+                  <select
+                    id="organization"
+                    name="organization"
+                    value={formData.organization}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  >
+                    <option value="">Select organization type</option>
+                    <option value="startup">Startup</option>
+                    <option value="small-business">Small Business</option>
+                    <option value="enterprise">Enterprise</option>
+                    <option value="pr-agency">PR Agency</option>
+                    <option value="nonprofit">Non-Profit</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  Subject <span className="text-accent">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="What is this regarding?"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Message <span className="text-accent">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  className="w-full px-4 py-3 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                  placeholder="Tell us more about your needs..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn-primary w-full inline-flex items-center justify-center gap-2"
+              >
+                <Send className="h-4 w-4" />
+                Send Message
+              </button>
             </form>
           </div>
-        </section>
-      </main>
+
+          {/* Contact Information */}
+          <div className="space-y-8">
+            {/* Quick Contact Info */}
+            <div className="press-card p-8">
+              <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => {
+                  const Icon = info.icon
+                  return (
+                    <div key={index} className="flex gap-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-2">{info.title}</h3>
+                        {info.details.map((detail, detailIndex) => (
+                          <p key={detailIndex} className="text-sm text-muted">{detail}</p>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Services */}
+            <div className="press-card p-8">
+              <h2 className="text-2xl font-bold mb-6">How We Can Help</h2>
+              <div className="space-y-4">
+                <div className="flex gap-3">
+                  <FileText className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold">Press Release Distribution</h3>
+                    <p className="text-sm text-muted mt-1">Get your news distributed to thousands of media outlets worldwide</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Users className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold">Account Support</h3>
+                    <p className="text-sm text-muted mt-1">Help with account setup, billing, and platform features</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Building2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold">Partnership Opportunities</h3>
+                    <p className="text-sm text-muted mt-1">Explore partnership and integration possibilities</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ */}
+            <div className="press-card p-8">
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <HelpCircle className="h-6 w-6" />
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-4">
+                {faqItems.map((faq, index) => (
+                  <div key={index} className="border-b border-primary/10 pb-4 last:border-0">
+                    <h3 className="font-semibold mb-2">{faq.question}</h3>
+                    <p className="text-sm text-muted">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 text-center">
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-secondary transition-colors"
+                >
+                  View all FAQs
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </div>
   )

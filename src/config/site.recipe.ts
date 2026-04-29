@@ -2,11 +2,11 @@ import type { SiteRecipe } from '@/design/factory/recipe-types'
 
 export const SITE_RECIPE: SiteRecipe = {
   productFamily: 'editorial',
-  themePack: 'medium-journal',
+  themePack: 'zorvixy-media',
   homepageTemplate: 'article-home',
   navbarTemplate: 'editorial-bar',
   footerTemplate: 'editorial-footer',
-  motionPack: 'minimal',
+  motionPack: 'editorial-soft',
   primaryTask: 'mediaDistribution',
   enabledTasks: ['mediaDistribution'],
   taskTemplates: {
