@@ -1,4 +1,4 @@
-ï»¿'use client'
+'use client'
 
 import { useState } from 'react'
 import Link from 'next/link'
@@ -7,12 +7,12 @@ import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { ContentImage } from '@/components/shared/content-image'
 
-// Mock press release data
+// Mock Release Media data
 const mockPressReleases = [
   {
     id: '1',
     title: 'Zorvixy Launches Revolutionary Media Distribution Platform',
-    summary: 'Breaking new ground in press release distribution with AI-powered targeting and real-time analytics.',
+    summary: 'Breaking new ground in Release Media distribution with AI-powered targeting and real-time analytics.',
     category: 'Company News',
     date: '2024-01-15',
     author: 'Sarah Johnson',
@@ -34,7 +34,7 @@ const mockPressReleases = [
   {
     id: '3',
     title: 'New Analytics Dashboard Provides Real-Time Media Insights',
-    summary: 'Advanced analytics platform gives instant visibility into press release performance and media engagement.',
+    summary: 'Advanced analytics platform gives instant visibility into Release Media performance and media engagement.',
     category: 'Product Updates',
     date: '2024-01-10',
     author: 'Emily Rodriguez',
@@ -66,8 +66,8 @@ const mockPressReleases = [
   },
   {
     id: '6',
-    title: 'Mobile App Launch: Manage Press Releases On-the-Go',
-    summary: 'New mobile application enables seamless press release management from anywhere, anytime.',
+    title: 'Mobile App Launch: Manage Release Media On-the-Go',
+    summary: 'New mobile application enables seamless Release Media management from anywhere, anytime.',
     category: 'Product Updates',
     date: '2024-01-03',
     author: 'James Wilson',
@@ -102,7 +102,7 @@ export default function PressPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-              Press Releases
+              Release Media
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl lg:text-2xl text-white/90">
               Latest news and announcements from Zorvixy
@@ -120,7 +120,7 @@ export default function PressPage() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted" />
               <input
                 type="text"
-                placeholder="Search press releases..."
+                placeholder="Search Release Media..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-primary/20 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -186,20 +186,20 @@ export default function PressPage() {
           {/* Results Count */}
           <div className="mt-6 flex items-center justify-between">
             <p className="text-muted">
-              Showing {filteredReleases.length} of {mockPressReleases.length} press releases
+              Showing {filteredReleases.length} of {mockPressReleases.length} Release Media
             </p>
             <Link
               href="/create/media-distribution"
               className="btn-primary inline-flex items-center gap-2 text-sm"
             >
-              Submit Press Release
+              Submit Release Media
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Press Releases Grid */}
+      {/* Release Media Grid */}
       <section className="py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {filteredReleases.length > 0 ? (
@@ -221,7 +221,7 @@ export default function PressPage() {
                       <span className="zorvixy-accent text-xs font-semibold uppercase tracking-wider">
                         {release.category}
                       </span>
-                      <span className="text-xs text-muted">â€¢</span>
+                      <span className="text-xs text-muted">•</span>
                       <span className="text-xs text-muted">{release.readTime}</span>
                     </div>
                     <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
@@ -231,7 +231,7 @@ export default function PressPage() {
                       {release.summary}
                     </p>
                     <div className="flex items-center justify-between text-xs text-muted">
-                      <span>{release.author} â€¢ {release.date}</span>
+                      <span>{release.author} • {release.date}</span>
                       <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                     </div>
                     {release.tags.length > 0 && (
@@ -253,7 +253,7 @@ export default function PressPage() {
           ) : (
             <div className="text-center py-12">
               <FileText className="h-16 w-16 text-muted mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">No press releases found</h3>
+              <h3 className="text-xl font-semibold mb-2">No Release Media found</h3>
               <p className="text-muted mb-6">
                 Try adjusting your search or filters to find what you're looking for.
               </p>
@@ -277,14 +277,14 @@ export default function PressPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Have News to Share?</h2>
           <p className="mt-4 text-lg text-muted">
-            Distribute your press release to thousands of media outlets worldwide
+            Distribute your Release Media to thousands of media outlets worldwide
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/create/media-distribution"
               className="btn-primary inline-flex items-center justify-center px-8 py-3 text-base font-semibold"
             >
-              Submit Your Press Release
+              Submit Your Release Media
               <ArrowRight className="ml-2 h-5 w-4" />
             </Link>
             <Link
@@ -301,3 +301,4 @@ export default function PressPage() {
     </div>
   )
 }
+
