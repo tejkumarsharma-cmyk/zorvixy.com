@@ -221,7 +221,7 @@ export default function PressPage() {
                       <span className="zorvixy-accent text-xs font-semibold uppercase tracking-wider">
                         {release.category}
                       </span>
-                      <span className="text-xs text-muted">•</span>
+                      <span className="text-xs text-muted"> - </span>
                       <span className="text-xs text-muted">{release.readTime}</span>
                     </div>
                     <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
@@ -231,7 +231,7 @@ export default function PressPage() {
                       {release.summary}
                     </p>
                     <div className="flex items-center justify-between text-xs text-muted">
-                      <span>{release.author} • {release.date}</span>
+                      <span>{release.author}  -  {release.date}</span>
                       <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                     </div>
                     {release.tags.length > 0 && (
