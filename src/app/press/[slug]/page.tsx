@@ -6,18 +6,18 @@ import { Footer } from '@/components/shared/footer'
 import { ContentImage } from '@/components/shared/content-image'
 import { notFound } from 'next/navigation'
 
-// Mock press release data - in a real app this would come from a database or CMS
+// Mock release media data - in a real app this would come from a database or CMS
 const pressReleases = {
   'zorvixy-launches-revolutionary-media-distribution-platform': {
     id: '1',
     title: 'Zorvixy Launches Revolutionary Media Distribution Platform',
     subtitle: 'AI-powered targeting and real-time analytics transform how companies share their news with the world',
     content: `
-      <p>Zorvixy today announced the launch of its groundbreaking media distribution platform, designed to revolutionize how companies distribute press releases and connect with media outlets worldwide. The new platform leverages artificial intelligence to provide precise targeting and real-time analytics, ensuring maximum impact for every press release.</p>
+      <p>Zorvixy today announced the launch of its groundbreaking media distribution platform, designed to revolutionize how companies distribute release media and connect with media outlets worldwide. The new platform leverages artificial intelligence to provide precise targeting and real-time analytics, ensuring maximum impact for every release media.</p>
       
       <p>The platform addresses long-standing challenges in media distribution, including inefficient targeting, lack of measurable results, and time-consuming manual processes. With Zorvixy's AI-powered system, companies can now reach the most relevant journalists and publications for their industry, location, and target audience.</p>
       
-      <blockquote>"We're transforming the way companies think about press release distribution," said Sarah Johnson, CEO of Zorvixy. "Our platform doesn't just send press releases—it ensures they reach the right people, at the right time, with measurable results that demonstrate real value."</blockquote>
+      <blockquote>"We're transforming the way companies think about release media distribution," said Sarah Johnson, CEO of Zorvixy. "Our platform doesn't just send release media—it ensures they reach the right people, at the right time, with measurable results that demonstrate real value."</blockquote>
       
       <p>Key features of the Zorvixy platform include:</p>
       <ul>
@@ -115,8 +115,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   if (!release) {
     return {
-      title: 'Press Release Not Found',
-      description: 'The requested press release could not be found.',
+      title: 'Release Media Not Found',
+      description: 'The requested release media could not be found.',
     }
   }
 
@@ -178,7 +178,7 @@ export default function PressReleasePage({ params }: PageProps) {
             </Link>
             <span>/</span>
             <Link href="/press" className="hover:text-primary transition-colors">
-              Press Releases
+              Release Media
             </Link>
             <span>/</span>
             <span className="text-foreground font-medium">{release.title}</span>
@@ -300,7 +300,7 @@ export default function PressReleasePage({ params }: PageProps) {
         <section className="py-16 bg-white/50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Related Press Releases</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Related Release Media</h2>
               <p className="mt-4 text-lg text-muted">Explore more announcements from Zorvixy</p>
             </div>
             
@@ -346,7 +346,7 @@ export default function PressReleasePage({ params }: PageProps) {
               href="/create/media-distribution"
               className="btn-primary inline-flex items-center justify-center px-8 py-3 text-base font-semibold"
             >
-              Submit Your Press Release
+              Submit Your Release Media
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
@@ -354,7 +354,7 @@ export default function PressReleasePage({ params }: PageProps) {
               className="inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-semibold text-primary border-2 border-primary hover:bg-primary hover:text-white transition-all"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Press Releases
+              Back to Release Media
             </Link>
           </div>
         </div>

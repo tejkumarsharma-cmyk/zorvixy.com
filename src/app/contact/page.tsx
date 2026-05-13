@@ -37,29 +37,6 @@ export default function ContactPage() {
     })
   }
 
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: 'Telephone Hours',
-      details: ['Monday - Friday: 9:00 AM - 6:00 PM EST', 'Saturday: 10:00 AM - 4:00 PM EST', 'Sunday: Closed']
-    },
-    {
-      icon: Phone,
-      title: 'Toll-Free Number',
-      details: ['1-800-ZORVIXY', '1-800-967-8499']
-    },
-    {
-      icon: MapPin,
-      title: 'US Address',
-      details: ['Zorvixy Media Distribution', '1234 Press Release Avenue', 'New York, NY 10001', 'United States']
-    },
-    {
-      icon: MapPin,
-      title: 'Canada Address',
-      details: ['Zorvixy Canada', '567 Media Way', 'Toronto, ON M5V 2T6', 'Canada']
-    }
-  ]
-
   const faqItems = [
     {
       question: 'How quickly will I receive a response?',
@@ -87,7 +64,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl lg:text-2xl text-white/90">
-              Get in touch with our team for press release distribution and media services
+              Get in touch with our team for Release Media distribution and media services
             </p>
           </div>
         </div>
@@ -213,29 +190,6 @@ export default function ContactPage() {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            {/* Quick Contact Info */}
-            <div className="press-card p-8">
-              <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon
-                  return (
-                    <div key={index} className="flex gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-2">{info.title}</h3>
-                        {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-sm text-muted">{detail}</p>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-
             {/* Services */}
             <div className="press-card p-8">
               <h2 className="text-2xl font-bold mb-6">How We Can Help</h2>
@@ -243,7 +197,7 @@ export default function ContactPage() {
                 <div className="flex gap-3">
                   <FileText className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="font-semibold">Press Release Distribution</h3>
+                    <h3 className="font-semibold">Release Media Distribution</h3>
                     <p className="text-sm text-muted mt-1">Get your news distributed to thousands of media outlets worldwide</p>
                   </div>
                 </div>
@@ -296,3 +250,4 @@ export default function ContactPage() {
     </div>
   )
 }
+

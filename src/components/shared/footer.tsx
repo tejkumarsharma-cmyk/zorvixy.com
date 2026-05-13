@@ -169,7 +169,7 @@ export function Footer() {
               <h4 className="text-sm font-semibold mb-4 text-primary">Quick Links</h4>
               <ul className="space-y-2 text-sm">
                 <li><Link href="/" className="text-muted hover:text-primary">Home</Link></li>
-                <li><Link href="/press" className="text-muted hover:text-primary">Press Releases</Link></li>
+                <li><Link href="/press" className="text-muted hover:text-primary">Release Media</Link></li>
                 <li><Link href="/latest-news" className="text-muted hover:text-primary">Latest News</Link></li>
                 <li><Link href="/pricing" className="text-muted hover:text-primary">Pricing</Link></li>
               </ul>
@@ -235,3 +235,4 @@ export function Footer() {
     </footer>
   )
 }
+

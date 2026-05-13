@@ -13,11 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     path: '/pricing',
     title: 'Pricing Plans - Zorvixy Media Distribution',
-    description: 'Choose the perfect pricing plan for your press release distribution needs. From basic coverage to enterprise solutions.',
+    description: 'Choose the perfect pricing plan for your Release Media distribution needs. From basic coverage to enterprise solutions.',
     openGraphTitle: 'Pricing Plans - Zorvixy',
     openGraphDescription: 'Professional media distribution plans for every budget',
     image: SITE_CONFIG.defaultOgImage,
-    keywords: ['pricing', 'press release distribution', 'media plans', 'cost'],
+    keywords: ['pricing', 'Release Media distribution', 'media plans', 'cost'],
   })
 }
 
@@ -32,7 +32,7 @@ const pricingPlans = [
       'Distribution to 5,000+ media outlets',
       'Basic analytics and reporting',
       '24-hour editorial review',
-      'Standard press release format',
+      'Standard Release Media format',
       'Email support',
       '7-day archive access',
     ],
@@ -52,7 +52,7 @@ const pricingPlans = [
       'Distribution to 15,000+ media outlets',
       'Advanced analytics and insights',
       'Priority editorial review (2 hours)',
-      'Enhanced press release format',
+      'Enhanced Release Media format',
       'Multimedia attachments (images/videos)',
       'Geographic targeting by region',
       'Phone and email support',
@@ -74,7 +74,7 @@ const pricingPlans = [
       'Distribution to 50,000+ media outlets',
       'Real-time analytics dashboard',
       'Instant editorial review',
-      'Custom press release design',
+      'Custom Release Media design',
       'Unlimited multimedia attachments',
       'Advanced geographic and demographic targeting',
       'Industry-specific targeting',
@@ -91,7 +91,7 @@ const pricingPlans = [
 const addOns = [
   {
     name: 'Translation Services',
-    description: 'Professional translation of your press release into multiple languages',
+    description: 'Professional translation of your Release Media into multiple languages',
     price: '$150',
     unit: 'per language',
     icon: Globe2,
@@ -126,7 +126,7 @@ const faqs = [
   },
   {
     question: 'Can I change my plan later?',
-    answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will apply to future press releases.',
+    answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will apply to future Release Media.',
   },
   {
     question: 'Do you offer discounts for multiple releases?',
@@ -134,10 +134,10 @@ const faqs = [
   },
   {
     question: 'What is the editorial review process?',
-    answer: 'Our editorial team reviews your press release for quality, formatting, and compliance. Basic plans get 24-hour review, while premium plans offer instant approval.',
+    answer: 'Our editorial team reviews your Release Media for quality, formatting, and compliance. Basic plans get 24-hour review, while premium plans offer instant approval.',
   },
   {
-    question: 'Can I track the performance of my press release?',
+    question: 'Can I track the performance of my Release Media?',
     answer: 'All plans include basic analytics. Pro and Premium plans offer advanced tracking with detailed insights on reach, engagement, and media pickups.',
   },
   {
@@ -159,7 +159,7 @@ export default function PricingPage() {
               Pricing Plans
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl lg:text-2xl text-white/90">
-              Choose the perfect plan for your press release distribution needs
+              Choose the perfect plan for your Release Media distribution needs
             </p>
           </div>
         </div>
@@ -233,7 +233,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Add-ons & Extras</h2>
-            <p className="mt-4 text-lg text-muted">Enhance your press release distribution with these additional services</p>
+            <p className="mt-4 text-lg text-muted">Enhance your Release Media distribution with these additional services</p>
           </div>
           
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -372,3 +372,4 @@ export default function PricingPage() {
     </div>
   )
 }
+
