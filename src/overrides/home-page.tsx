@@ -30,26 +30,26 @@ function getCategory(post: any) {
   const c = (post?.content as any)?.category
   if (typeof c === 'string' && c.trim()) return c.trim()
   const tag = post?.tags?.find((t: string) => t && t !== 'mediaDistribution' && t !== 'article')
-  return typeof tag === 'string' ? tag : 'Press Release'
+  return typeof tag === 'string' ? tag : 'Release Media'
 }
 
 // ─── FAQ data ────────────────────────────────────────────────────────────────
 
 const faqs = [
   {
-    q: 'How quickly will my press release be distributed?',
-    a: 'Most press releases are distributed within 1–2 hours of submission and approval. Urgent distributions can be expedited upon request.',
+    q: 'How quickly will my Release Media be distributed?',
+    a: 'Most Release Media are distributed within 1–2 hours of submission and approval. Urgent distributions can be expedited upon request.',
   },
   {
     q: 'Can I target specific industries or regions?',
     a: 'Yes. Our platform lets you target by industry vertical, geographic region, and media type so your news reaches the most relevant journalists.',
   },
   {
-    q: 'What formats are accepted for press releases?',
+    q: 'What formats are accepted for Release Media?',
     a: 'We accept plain text, Word documents, and HTML. Our editorial team will format your release to meet industry standards before distribution.',
   },
   {
-    q: 'Will my press release appear on Google News?',
+    q: 'Will my Release Media appear on Google News?',
     a: 'Releases distributed through our network are eligible for Google News indexing via our partner publications.',
   },
 ]
@@ -91,12 +91,12 @@ export async function HomePageOverride() {
   const recentPosts = posts.slice(0, 6)
 
   const reviews = [
-    { name: 'Sarah M.', role: 'PR Manager', rating: 5, text: 'Our press release reached over 200 outlets within hours. The targeting options are exceptional.' },
-    { name: 'James T.', role: 'Startup Founder', rating: 5, text: 'Best PR distribution platform I have used. Simple, fast, and the results speak for themselves.' },
-    { name: 'Priya K.', role: 'Communications Lead', rating: 4, text: 'Great reach and solid analytics. The editorial team helped polish our release before sending.' },
-    { name: 'Carlos R.', role: 'Marketing Director', rating: 5, text: 'We saw a 3× increase in media pickups compared to our previous provider. Highly recommended.' },
-    { name: 'Aisha N.', role: 'Brand Strategist', rating: 5, text: 'The dashboard is intuitive and the distribution network is genuinely impressive.' },
-    { name: 'Tom W.', role: 'Agency Owner', rating: 4, text: 'Reliable, affordable, and the customer support team is always responsive. A solid choice.' },
+    { name: 'Alexandra Reed', role: 'PR Manager', rating: 5, text: 'Our Release Media reached over 200 outlets within hours. The targeting options are exceptional.' },
+    { name: 'Jonathan Miles', role: 'Startup Founder', rating: 5, text: 'Best PR distribution platform I have used. Simple, fast, and the results speak for themselves.' },
+    { name: 'Sophia Laurent', role: 'Communications Lead', rating: 4, text: 'Great reach and solid analytics. The editorial team helped polish our release before sending.' },
+    { name: 'Marcus Williams', role: 'Marketing Director', rating: 5, text: 'We saw a 3× increase in media pickups compared to our previous provider. Highly recommended.' },
+    { name: 'Natalie Brooks', role: 'Brand Strategist', rating: 5, text: 'The dashboard is intuitive and the distribution network is genuinely impressive.' },
+    { name: 'Daniel Foster', role: 'Agency Owner', rating: 4, text: 'Reliable, affordable, and the customer support team is always responsive. A solid choice.' },
   ]
 
   return (
@@ -167,7 +167,7 @@ export async function HomePageOverride() {
                 className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
                 style={{ borderColor: 'rgba(245,158,11,0.4)', background: 'rgba(245,158,11,0.12)', color: '#fcd34d' }}
               >
-                #1 Press Release Distribution
+                #1 Release Media Distribution
               </span>
               <h1
                 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
@@ -184,15 +184,8 @@ export async function HomePageOverride() {
                   className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold shadow-lg transition hover:opacity-90"
                   style={{ background: '#f59e0b', color: '#1a0533' }}
                 >
-                  Submit Press Release
+                  Submit Release Media
                   <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/pricing"
-                  className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition"
-                  style={{ border: '1.5px solid rgba(255,255,255,0.35)', color: '#ffffff', background: 'transparent' }}
-                >
-                  View Pricing
                 </Link>
               </div>
             </div>
@@ -201,7 +194,7 @@ export async function HomePageOverride() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { label: 'Media Outlets', value: '15,000+', icon: Globe2 },
-                { label: 'Press Releases Sent', value: '250,000+', icon: FileText },
+                { label: 'Release Media Sent', value: '250,000+', icon: FileText },
                 { label: 'Avg. Impressions', value: '2.5M', icon: BarChart3 },
                 { label: 'Happy Clients', value: '8,500+', icon: Users },
               ].map(({ label, value, icon: Icon }) => (
@@ -253,7 +246,7 @@ export async function HomePageOverride() {
                 img: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
                 color: '#7c3aed',
                 title: 'Instant Global Distribution',
-                desc: 'Your press release reaches 15,000+ media outlets, news wires, and journalists across 100+ countries within hours.',
+                desc: 'Your Release Media reaches 15,000+ media outlets, news wires, and journalists across 100+ countries within hours.',
               },
               {
                 img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80',
@@ -355,7 +348,7 @@ export async function HomePageOverride() {
                   {
                     step: '01',
                     title: 'Write your release',
-                    desc: 'Use our guided editor or paste your existing press release. Our AI checks for clarity and SEO.',
+                    desc: 'Use our guided editor or paste your existing Release Media. Our AI checks for clarity and SEO.',
                   },
                   {
                     step: '02',
@@ -539,14 +532,14 @@ export async function HomePageOverride() {
                 Ready to share your story with the world?
               </h2>
               <p className="mt-3 max-w-lg text-sm leading-7" style={{ color: 'rgba(26,5,51,0.65)' }}>
-                Join thousands of companies that trust {SITE_CONFIG.name} for professional press release distribution. Start for free today.
+                Join thousands of companies that trust {SITE_CONFIG.name} for professional Release Media distribution. Start for free today.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 rounded-full bg-[#1a0533] px-7 py-3.5 text-sm font-bold text-white shadow transition hover:bg-[#3b0764]"
                 >
-                  Submit a Press Release
+                  Submit a Release Media
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
@@ -569,4 +562,5 @@ export async function HomePageOverride() {
     </div>
   )
 }
+
 

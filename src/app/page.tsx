@@ -328,7 +328,7 @@ function EditorialHome({
   const deckPosts = posts.slice(10, 16)
   const featuredSecondary = posts[1]
 
-  const headline = lead?.title || 'Latest Press Releases'
+  const headline = lead?.title || 'Latest Release Media'
   const summarySource = lead?.summary || 'Distribute your news to media outlets worldwide'
   const [bodyA, bodyB] = splitIntoTwoParagraphs(summarySource)
   const secondParagraph = bodyB || 'Professional media distribution for impactful announcements'
@@ -350,7 +350,7 @@ function EditorialHome({
                 href={primaryTask?.route || '/media-distribution'}
                 className="btn-primary inline-flex items-center justify-center px-8 py-3 text-base font-semibold"
               >
-                Submit Press Release
+                Submit Release Media
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
@@ -364,7 +364,7 @@ function EditorialHome({
         </div>
       </section>
 
-      {/* Featured Press Release */}
+      {/* Featured Release Media */}
       {lead ? (
         <section className="py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -445,13 +445,13 @@ function EditorialHome({
         </section>
       ) : null}
 
-      {/* More Press Releases Grid */}
+      {/* More Release Media Grid */}
       {deckPosts.length ? (
         <section className="py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">More Announcements</h2>
-              <p className="mt-4 text-lg text-muted">Explore more press releases and updates</p>
+              <p className="mt-4 text-lg text-muted">Explore more Release Media and updates</p>
             </div>
             <div className="news-grid">
               {deckPosts.map((post) => (
@@ -493,7 +493,7 @@ function EditorialHome({
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FileText className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-primary">Press Release Distribution</h3>
+              <h3 className="text-xl font-semibold mb-2 text-primary">Release Media Distribution</h3>
               <p className="text-muted">Reach thousands of media outlets with your news</p>
             </div>
             <div className="press-card text-center">
@@ -508,7 +508,7 @@ function EditorialHome({
                 <LayoutGrid className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-primary">Analytics & Reporting</h3>
-              <p className="text-muted">Track your press release performance and reach</p>
+              <p className="text-muted">Track your Release Media performance and reach</p>
             </div>
           </div>
         </div>
@@ -753,3 +753,5 @@ export default async function HomePage() {
     </div>
   )
 }
+
+

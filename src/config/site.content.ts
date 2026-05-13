@@ -11,31 +11,31 @@ export const siteContent = {
     badge: 'Media Distribution',
     title: ['Share Your Story with the World.'],
     description:
-      'Professional press release distribution platform that connects your news with thousands of media outlets globally.',
+      'Professional Release Media distribution platform that connects your news with thousands of media outlets globally.',
     primaryCta: {
-      label: 'Submit Press Release',
+      label: 'Submit Release Media',
       href: '/create/media-distribution',
     },
     secondaryCta: {
       label: 'View Pricing',
       href: '/pricing',
     },
-    searchPlaceholder: 'Search press releases',
+    searchPlaceholder: 'Search Release Media',
     focusLabel: 'Featured',
     featureCardBadge: 'media distribution',
     featureCardTitle: 'Reach 15,000+ Media Outlets.',
     featureCardDescription:
-      'Our platform ensures your press releases reach the right journalists and publications with AI-powered targeting.',
+      'Our platform ensures your Release Media reach the right journalists and publications with AI-powered targeting.',
   },
   home: {
     metadata: {
-      title: 'Press Releases & Media Distribution',
+      title: 'Release Media & Media Distribution',
       description:
-        'Professional press release distribution platform. Share your news with thousands of media outlets worldwide.',
-      openGraphTitle: 'Zorvixy - Press Release Distribution',
+        'Professional Release Media distribution platform. Share your news with thousands of media outlets worldwide.',
+      openGraphTitle: 'Zorvixy - Release Media Distribution',
       openGraphDescription:
-        'Connect your stories with global media outlets through our intelligent press release distribution platform.',
-      keywords: ['press release distribution', 'media outlets', 'news distribution', 'public relations'],
+        'Connect your stories with global media outlets through our intelligent Release Media distribution platform.',
+      keywords: ['Release Media distribution', 'media outlets', 'news distribution', 'public relations'],
     },
     introBadge: 'About',
     introTitle: 'A quiet publishing template made for regular updates.',
@@ -139,3 +139,4 @@ export const taskIntroCopy: Record<
     ],
   },
 }
+

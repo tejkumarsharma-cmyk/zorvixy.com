@@ -4,7 +4,7 @@ import { NavbarShell } from "@/components/shared/navbar-shell";
 import { Footer } from "@/components/shared/footer";
 
 const stats = [
-  { label: "Press Releases Distributed", value: "50,000+", icon: FileText },
+  { label: "Release Media Distributed", value: "50,000+", icon: FileText },
   { label: "Media Outlets Reached", value: "15,000+", icon: Globe2 },
   { label: "Companies Served", value: "12,000+", icon: Users },
   { label: "Global Reach", value: "150+ Countries", icon: Target },
@@ -23,7 +23,7 @@ const values = [
   },
   { 
     title: "Measurable Results", 
-    description: "Advanced analytics provide clear insights into your press release performance and media impact.",
+    description: "Advanced analytics provide clear insights into your Release Media performance and media impact.",
     icon: TrendingUp
   },
   { 
@@ -38,25 +38,25 @@ const teamMembers = [
     name: "Sarah Johnson",
     role: "CEO & Founder",
     bio: "Former journalist and PR executive with 15+ years in media distribution.",
-    image: "/placeholder.svg?height=100&width=100"
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&q=80"
   },
   {
     name: "Michael Chen",
     role: "Head of Partnerships",
     bio: "Expert in building global media relationships and strategic alliances.",
-    image: "/placeholder.svg?height=100&width=100"
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&q=80"
   },
   {
     name: "Emily Rodriguez",
     role: "CTO",
     bio: "Tech innovator specializing in AI-powered media targeting and analytics.",
-    image: "/placeholder.svg?height=100&width=100"
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&q=80"
   },
   {
     name: "David Kim",
     role: "Head of Sales",
     bio: "Helping companies of all sizes maximize their media reach and impact.",
-    image: "/placeholder.svg?height=100&width=100"
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&q=80"
   }
 ];
 
@@ -90,7 +90,7 @@ export default function AboutPage() {
               Revolutionizing Media Distribution
             </h2>
             <p className="mt-4 text-lg text-muted">
-              Founded in 2020, Zorvixy emerged from a simple observation: press release distribution was broken.
+              Founded in 2020, Zorvixy emerged from a simple observation: Release Media distribution was broken.
             </p>
           </div>
           
@@ -101,7 +101,7 @@ export default function AboutPage() {
               to build a solution that would transform how companies share their news with the world.
             </p>
             <p className="text-lg leading-relaxed text-muted mt-4">
-              Today, Zorvixy stands as the leading platform for intelligent press release distribution, 
+              Today, Zorvixy stands as the leading platform for intelligent Release Media distribution, 
               serving thousands of companies from startups to Fortune 500 corporations across 150+ countries.
             </p>
           </div>
@@ -227,3 +227,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

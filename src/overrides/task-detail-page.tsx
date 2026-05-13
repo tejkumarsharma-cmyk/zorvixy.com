@@ -23,7 +23,7 @@ export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: st
     'Post body will appear here.'
   )
 
-  const category = (content.category as string) || 'Press Release'
+  const category = (content.category as string) || 'Release Media'
   const author   = post.authorName || 'Editorial Desk'
   const dateStr  = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
@@ -91,12 +91,6 @@ export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: st
 
           {/* meta */}
           <div className="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            {dateStr && (
-              <span className="flex items-center gap-1.5">
-                <Calendar className="h-3.5 w-3.5" />
-                {dateStr}
-              </span>
-            )}
             <span className="flex items-center gap-1.5">
               <User className="h-3.5 w-3.5" />
               {author}
@@ -177,7 +171,7 @@ export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: st
             <input
               name="q"
               type="text"
-              placeholder="Search press releases..."
+              placeholder="Search Release Media..."
               className="flex-1 bg-transparent px-4 py-3 text-sm outline-none"
               style={{ color: '#1a0533' }}
             />
@@ -222,7 +216,7 @@ export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: st
               Share Your News
             </h3>
             <p className="mt-2 text-xs leading-5" style={{ color: 'rgba(255,255,255,0.65)' }}>
-              Reach 15,000+ media outlets with your press release.
+              Reach 15,000+ media outlets with your Release Media.
             </p>
             <Link
               href="/contact"
@@ -240,4 +234,5 @@ export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: st
     </div>
   )
 }
+
 

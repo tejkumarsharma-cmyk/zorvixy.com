@@ -27,7 +27,6 @@ const C = {
 const navLinks = [
   { label: 'Home',        href: '/' },
   { label: 'Latest News', href: '/updates' },
-  { label: 'Pricing',     href: '/pricing' },
   { label: 'About Us',    href: '/about' },
   { label: 'Contact',     href: '/contact' },
 ]
@@ -52,21 +51,12 @@ export function NavbarOverride() {
       >
 
         {/* ── LOGO ─────────────────────────────────────────────────────── */}
-        <Link href="/" className="flex shrink-0 items-center gap-3">
-          <div className="min-w-0">
-            <span
-              className="block truncate text-[18px] font-extrabold leading-tight tracking-tight"
-              style={{ color: C.navy }}
-            >
-              {SITE_CONFIG.name}
-            </span>
-            <span
-              className="mt-0.5 block text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: C.purple }}
-            >
-              Media Press Release
-            </span>
-          </div>
+        <Link href="/" className="flex shrink-0 items-center">
+          <img
+            src="/logo.png"
+            alt={SITE_CONFIG.name}
+            className="h-10 w-auto object-contain"
+          />
         </Link>
 
         {/* ── DESKTOP NAV ──────────────────────────────────────────────── */}
@@ -171,7 +161,7 @@ export function NavbarOverride() {
             <input
               name="q"
               type="text"
-              placeholder="Search press releases..."
+              placeholder="Search Release Media..."
               autoFocus
               className="flex-1 bg-transparent text-sm outline-none"
               style={{ color: C.navy }}
@@ -233,4 +223,5 @@ export function NavbarOverride() {
     </header>
   )
 }
+
 
