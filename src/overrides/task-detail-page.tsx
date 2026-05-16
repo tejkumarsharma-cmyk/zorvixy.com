@@ -1,238 +1,157 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight, Calendar, User, Tag, Search } from 'lucide-react'
+import { Facebook, Linkedin, Link2, Mail, Twitter } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
-import { fetchTaskPostBySlug, fetchTaskPosts } from '@/lib/task-data'
+import { ContentImage } from '@/components/shared/content-image'
+import { fetchTaskPostBySlug, fetchTaskPosts, buildPostUrl } from '@/lib/task-data'
 import type { TaskKey } from '@/lib/site-config'
+import type { SitePost } from '@/lib/site-connector'
+import { SITE_CONFIG } from '@/lib/site-config'
 import { formatRichHtml, RichContent } from '@/components/shared/rich-content'
 
 export const TASK_DETAIL_PAGE_OVERRIDE_ENABLED = true
+
+const isValidImageUrl = (value?: string | null) =>
+  typeof value === 'string' && (value.startsWith('/') || /^https?:\/\//i.test(value))
+
+const getContent = (post: SitePost) => {
+  const content = post.content && typeof post.content === 'object' ? post.content : {}
+  return content as Record<string, unknown>
+}
+
+const getImageUrls = (post: SitePost, content: Record<string, unknown>) => {
+  const media = Array.isArray(post.media) ? post.media : []
+  const mediaImages = media.map((item) => item?.url).filter((url): url is string => isValidImageUrl(url))
+  const contentImages = Array.isArray(content.images)
+    ? content.images.filter((url): url is string => typeof url === 'string' && isValidImageUrl(url))
+    : []
+  const merged = [...mediaImages, ...contentImages]
+  if (merged.length) return merged
+  if (isValidImageUrl(content.logo as string)) return [content.logo as string]
+  return [] as string[]
+}
 
 export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: string }) {
   const post = await fetchTaskPostBySlug('mediaDistribution', slug)
   if (!post) notFound()
 
-  const recent = (await fetchTaskPosts('mediaDistribution', 8, { fresh: true }))
+  const related = (await fetchTaskPosts('mediaDistribution', 8, { fresh: true }))
     .filter((item) => item.slug !== slug)
-    .slice(0, 5)
+    .slice(0, 4)
 
-  const content = (post.content || {}) as Record<string, unknown>
-  const html = formatRichHtml(
-    (content.body as string) || post.summary || '',
-    'Post body will appear here.'
-  )
-
-  const category = (content.category as string) || 'Release Media'
-  const author   = post.authorName || 'Editorial Desk'
-  const dateStr  = post.publishedAt
+  const content = getContent(post)
+  const rawBody =
+    (typeof content.body === 'string' && content.body.trim()) ||
+    (typeof content.description === 'string' && content.description.trim()) ||
+    post.summary ||
+    ''
+  const html = formatRichHtml(rawBody, '')
+  const images = getImageUrls(post, content)
+  const hero = images[0]
+  const archivePath = SITE_CONFIG.taskViews.mediaDistribution || '/updates'
+  const pageUrl = `${SITE_CONFIG.baseUrl.replace(/\/$/, '')}${buildPostUrl('mediaDistribution', post.slug)}`
+  const shareText = encodeURIComponent(post.title)
+  const shareUrl = encodeURIComponent(pageUrl)
+  const date = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     : ''
 
   return (
-    <div className="min-h-screen bg-white text-[#1a0533]">
-      {/* scoped styles — no event handlers needed */}
-      <style>{`
-        .tdp-nav-link:hover { color: #7c3aed !important; }
-        .tdp-recent-link:hover p { color: #7c3aed !important; }
-        .tdp-prev-next:hover { background: #faf5ff !important; }
-        .tdp-prose h1,.tdp-prose h2,.tdp-prose h3,.tdp-prose h4 { color: #1a0533 !important; }
-        .tdp-prose a { color: #7c3aed !important; }
-        .tdp-prose p,.tdp-prose li { color: #374151 !important; }
-      `}</style>
-
+    <div className="min-h-screen bg-white text-foreground">
       <NavbarShell />
 
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: '260px' }}>
-        {/* bg image */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        {/* dark purple overlay */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, rgba(26,5,51,0.94) 0%, rgba(59,7,100,0.89) 50%, rgba(76,29,149,0.86) 100%)',
-          }}
-        />
-        {/* grid texture */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+      <article className="mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:pt-12">
+        <nav className="text-xs font-medium text-muted-foreground">
+          <Link href="/" className="hover:text-primary">
+            Home
+          </Link>
+          <span className="mx-2 opacity-40">/</span>
+          <Link href={archivePath} className="hover:text-primary">
+            Press releases
+          </Link>
+        </nav>
 
-        <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:py-20">
-          {/* category badge */}
-          <span
-            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-widest"
-            style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.35)', color: '#f59e0b' }}
-          >
-            <Tag className="h-3 w-3" />
-            {category}
-          </span>
+        <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
+          <div className="min-w-0">
+            <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold leading-[1.12] tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.35rem]">
+              {post.title}
+            </h1>
 
-          {/* title */}
-          <h1
-            className="mx-auto mt-5 max-w-4xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl"
-            style={{ color: '#ffffff' }}
-          >
-            {post.title}
-          </h1>
+            {date ? (
+              <div className="mt-5 text-sm text-muted-foreground">
+                <span>{date}</span>
+              </div>
+            ) : null}
 
-          {/* meta */}
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            <span className="flex items-center gap-1.5">
-              <User className="h-3.5 w-3.5" />
-              {author}
-            </span>
-          </div>
-
-          {/* breadcrumb */}
-          <div className="mt-4 flex items-center justify-center gap-2 text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            <Link href="/" className="tdp-nav-link transition" style={{ color: 'rgba(255,255,255,0.6)' }}>Home</Link>
-            <span>›</span>
-            <Link href="/updates" className="tdp-nav-link transition" style={{ color: 'rgba(255,255,255,0.6)' }}>Updates</Link>
-            <span>›</span>
-            <span className="max-w-[260px] truncate" style={{ color: 'rgba(255,255,255,0.45)' }}>{post.title}</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── MAIN ── */}
-      <main className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
-
-        {/* ── ARTICLE ── */}
-        <article>
-          {/* summary callout */}
-          {post.summary && (
-            <div
-              className="mb-8 rounded-2xl p-5 text-sm leading-7"
-              style={{ background: '#f3e8ff', border: '1px solid #ddd6fe', color: '#374151' }}
-            >
-              <span className="mb-2 block text-[11px] font-bold uppercase tracking-widest" style={{ color: '#7c3aed' }}>
-                Summary
+            <div className="mt-6 flex flex-wrap gap-2">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-foreground shadow-sm transition hover:border-primary/40 hover:bg-muted"
+                aria-label="Share on X"
+              >
+                <Twitter className="h-4 w-4" />
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-foreground shadow-sm transition hover:border-primary/40 hover:bg-muted"
+                aria-label="Share on LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-foreground shadow-sm transition hover:border-primary/40 hover:bg-muted"
+                aria-label="Share on Facebook"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href={`mailto:?subject=${shareText}&body=${shareUrl}`}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-foreground shadow-sm transition hover:border-primary/40 hover:bg-muted"
+                aria-label="Email this release"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+              <span className="inline-flex items-center gap-1 rounded-full border border-dashed border-border px-3 py-2 text-xs text-muted-foreground">
+                <Link2 className="h-3.5 w-3.5" />
+                {pageUrl.replace(/^https?:\/\//, '')}
               </span>
-              {post.summary}
             </div>
-          )}
 
-          {/* body */}
-          <div className="tdp-prose prose prose-lg max-w-none">
-            <RichContent html={html} />
+            {hero ? (
+              <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-[1.25rem] border border-border bg-muted shadow-sm">
+                <ContentImage src={hero} alt={post.title} fill className="object-cover" priority />
+              </div>
+            ) : null}
+
+            <RichContent html={html} className="article-content mt-10 max-w-none text-[1.05rem] leading-[1.75] text-foreground/90" />
           </div>
 
-          {/* prev / next */}
-          {recent.length >= 2 && (
-            <div
-              className="mt-12 grid overflow-hidden rounded-2xl md:grid-cols-2"
-              style={{ border: '1px solid #ede9f6' }}
-            >
-              {recent.slice(0, 2).map((item, i) => (
-                <Link
-                  key={item.id}
-                  href={`/updates/${item.slug}`}
-                  className="tdp-prev-next block p-6 transition-colors"
-                  style={{
-                    background: '#ffffff',
-                    borderRight: i === 0 ? '1px solid #ede9f6' : undefined,
-                  }}
-                >
-                  <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: '#7c3aed' }}>
-                    {i === 0 ? '← Previous' : 'Next →'}
-                  </p>
-                  <p className="mt-2 line-clamp-2 text-sm font-semibold leading-6" style={{ color: '#1a0533' }}>
-                    {item.title}
-                  </p>
-                </Link>
-              ))}
+          <aside className="space-y-6 lg:pt-2">
+            <div className="rounded-[1.25rem] border border-border bg-white p-6 shadow-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">More releases</p>
+              <ul className="mt-4 space-y-4">
+                {related.map((item) => (
+                  <li key={item.id}>
+                    <Link href={buildPostUrl('mediaDistribution', item.slug)} className="block text-sm font-semibold leading-snug text-foreground hover:text-primary">
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          )}
-        </article>
-
-        {/* ── SIDEBAR ── */}
-        <aside className="space-y-6">
-          {/* search */}
-          <form
-            action="/search"
-            method="get"
-            className="flex overflow-hidden rounded-xl"
-            style={{ border: '1.5px solid #ddd6fe' }}
-          >
-            <input
-              name="q"
-              type="text"
-              placeholder="Search Release Media..."
-              className="flex-1 bg-transparent px-4 py-3 text-sm outline-none"
-              style={{ color: '#1a0533' }}
-            />
-            <button
-              type="submit"
-              className="flex items-center justify-center px-4 transition-opacity hover:opacity-80"
-              style={{ background: '#7c3aed', color: '#ffffff' }}
-              aria-label="Search"
-            >
-              <Search className="h-4 w-4" />
-            </button>
-          </form>
-
-          {/* recent releases */}
-          <div className="rounded-2xl p-5" style={{ background: '#faf5ff', border: '1px solid #ede9f6' }}>
-            <h2 className="mb-4 text-sm font-extrabold uppercase tracking-widest" style={{ color: '#1a0533' }}>
-              Recent Releases
-            </h2>
-            <div className="space-y-4">
-              {recent.map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/updates/${item.slug}`}
-                  className="tdp-recent-link group flex items-start gap-3 border-b pb-4 last:border-b-0 last:pb-0"
-                  style={{ borderColor: '#ddd6fe' }}
-                >
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: '#7c3aed' }} />
-                  <p className="line-clamp-2 text-sm leading-6 transition-colors" style={{ color: '#374151' }}>
-                    {item.title}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA card */}
-          <div
-            className="rounded-2xl p-6 text-center"
-            style={{ background: 'linear-gradient(135deg, #1a0533 0%, #3b0764 100%)' }}
-          >
-            <h3 className="text-base font-extrabold" style={{ color: '#ffffff' }}>
-              Share Your News
-            </h3>
-            <p className="mt-2 text-xs leading-5" style={{ color: 'rgba(255,255,255,0.65)' }}>
-              Reach 15,000+ media outlets with your Release Media.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-4 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-bold transition-opacity hover:opacity-90"
-              style={{ background: '#f59e0b', color: '#1a0533' }}
-            >
-              Submit Release
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </aside>
-      </main>
+          </aside>
+        </div>
+      </article>
 
       <Footer />
     </div>
   )
 }
-
-
